@@ -45,7 +45,9 @@ class TwitterSearchApiProvider extends AbstractProvider {
     $response = $this->twitterApiClient->get('/search/tweets.json', array(
       'query' => array(
         'q' => $parameters['query'],
+        'result_type' => $parameters['result_type'],
         'include_entities' => $parameters['include_entities'],
+        'tweet_mode' => $parameters['tweet_mode'],
         'max_id' => $parameters['max_id'],
         'count' => $parameters['count']
       ),
@@ -63,7 +65,9 @@ class TwitterSearchApiProvider extends AbstractProvider {
     $resolver->setRequired('query');
 
     $resolver->setDefaults(array(
+      'result_type' => '',
       'include_entities' => true,
+      'tweet_mode' => '',
       'max_id' => '',
       'count' => ''
     ));
