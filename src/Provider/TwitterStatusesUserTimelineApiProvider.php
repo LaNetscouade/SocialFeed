@@ -47,6 +47,8 @@ class TwitterStatusesUserTimelineApiProvider extends AbstractProvider
             ->get('/statuses/user_timeline.json', array(
                 'query' => array(
                     'screen_name' => $parameters['screen_name'],
+                    'include_entities' => $parameters['include_entities'],
+                    'tweet_mode' => $parameters['tweet_mode'],
                 ),
             ));
 
@@ -73,5 +75,10 @@ class TwitterStatusesUserTimelineApiProvider extends AbstractProvider
     protected function configureOptionResolver(OptionsResolver &$resolver)
     {
         $resolver->setRequired('screen_name');
+        
+        $resolver->setDefaults(array(
+            'include_entities' => true,
+            'tweet_mode' => ''
+        ));
     }
 }
