@@ -49,6 +49,7 @@ class TwitterStatusesUserTimelineApiProvider extends AbstractProvider
                     'screen_name' => $parameters['screen_name'],
                     'include_entities' => $parameters['include_entities'],
                     'tweet_mode' => $parameters['tweet_mode'],
+                    'count' => $parameters['count']
                 ),
             ));
 
@@ -78,7 +79,8 @@ class TwitterStatusesUserTimelineApiProvider extends AbstractProvider
         
         $resolver->setDefaults(array(
             'include_entities' => true,
-            'tweet_mode' => ''
+            'tweet_mode' => '',
+            'count' => ''
         ));
     }
 }
