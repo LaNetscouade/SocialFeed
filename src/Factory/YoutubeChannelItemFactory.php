@@ -13,7 +13,7 @@ namespace Lns\SocialFeed\Factory;
 
 use Lns\SocialFeed\Model\Author;
 use Lns\SocialFeed\Model\Media;
-use Lns\SocialFeed\Model\YoutubePlaylistItem;
+use Lns\SocialFeed\Model\YoutubeChannelItem;
 
 /**
  * YoutubePlaylistItemFactory.
