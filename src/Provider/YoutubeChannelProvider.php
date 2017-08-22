@@ -81,6 +81,7 @@ class YoutubeChannelProvider extends AbstractProvider
     protected function configureOptionResolver(OptionsResolver &$resolver)
     {
         $resolver->setRequired('channelId');
+        $resolver->setRequired('order');
         $resolver->setDefaults(array(
             'pageToken' => null,
         ));
