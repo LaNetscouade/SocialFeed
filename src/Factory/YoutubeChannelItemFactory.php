@@ -16,7 +16,7 @@ use Lns\SocialFeed\Model\Media;
 use Lns\SocialFeed\Model\YoutubeChannelItem;
 
 /**
- * YoutubePlaylistItemFactory.
+ * YoutubeChannelItemFactory.
  */
 class YoutubeChannelItemFactory implements PostFactoryInterface
 {
@@ -29,27 +29,27 @@ class YoutubeChannelItemFactory implements PostFactoryInterface
      */
     public function create(array $data)
     {
-        $playlistItem = new YoutubeChannelItem();
+        $channelItem = new YoutubeChannelItem();
 
         $snippet = $data['snippet'];
 
         $author = new Author();
         $author->setIdentifier($snippet['channelId']);
-        $author->setName($snippet['channelTitle']);
-        $author->setUsername($snippet['channelTitle']);
+        $author->setName($data['channelTitle']);
+        $author->setUsername($data['channelTitle']);
 
-        $playlistItem
-            ->setIdentifier($data['id'])
-            ->setMessage($snippet['title'])
+        $channelItem
+            ->setIdentifier($data['id']['videoId'])
+            ->setMessage($snippet['description'])
             ->setCreatedAt(new \DateTime($snippet['publishedAt']))
             ->setAuthor($author);
 
         $media = $this->getBestThumbnailRes($snippet['thumbnails']);
-        $media->setLink('https://www.youtube.com/watch?v=' . $snippet['resourceId']['videoId']);
+        $media->setLink('https://www.youtube.com/watch?v=' . $data['id']['videoId']);
 
-        $playlistItem->addMedia($media);
+        $channelItem->addMedia($media);
 
-        return $playlistItem;
+        return $channelItem;
     }
 
     public function getBestThumbnailRes($thumbnails) {

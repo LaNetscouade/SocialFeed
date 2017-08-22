@@ -19,7 +19,7 @@ use Lns\SocialFeed\Model\Pagination\Token;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * YoutubePlaylistProvider.
+ * YoutubeChannelProvider.
  */
 class YoutubeChannelProvider extends AbstractProvider
 {
@@ -49,6 +49,7 @@ class YoutubeChannelProvider extends AbstractProvider
             ->get('/search', array(
                 'query' => array(
                     'order' => $parameters['order'],
+                    'maxResults' => $parameters['maxResults'],
                     'part' => 'snippet',
                     'channelId' => $parameters['channelId']
                 ),
@@ -82,6 +83,7 @@ class YoutubeChannelProvider extends AbstractProvider
     {
         $resolver->setRequired('channelId');
         $resolver->setRequired('order');
+        $resolver->setRequired('maxResults');
         $resolver->setDefaults(array(
             'pageToken' => null,
         ));
